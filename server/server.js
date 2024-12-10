@@ -4,9 +4,11 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const User = require("./models/User");
 
 // Import routes
+const authMiddleware = require("./middleware/authMiddleware");
 const authRoutes = require("./routes/auth");
 const healthCheckRoutes = require("./routes/healthcheck");
 
@@ -18,6 +20,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 //app.use(passport.initialize()); GOOGLE OAUTH NOT SET UP YET
 
 // Environmental Variables
@@ -27,6 +30,10 @@ const MONGODB_URI = process.env.MONGODB_URI;
 // Use Routes
 app.use("/auth", authRoutes);
 app.use("/api", healthCheckRoutes);
+
+app.get("/protected", authMiddleware, (req, res) => {
+    res.json({ message: "Access granted", userId: req.userId });
+});
 
 // Connect to MongoDB
 mongoose

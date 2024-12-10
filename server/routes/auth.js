@@ -1,5 +1,10 @@
 const express = require("express");
-const { registerUser, loginUser } = require("../controllers/authController");
+const {
+    registerUser,
+    loginUser,
+    refreshUser,
+    logoutUser,
+} = require("../controllers/authController");
 //const passport = require("passport"); GOOGLE OAUTH NOT SET UP YET
 
 const router = express.Router();
@@ -9,6 +14,12 @@ router.post("/register", registerUser);
 
 // Login route
 router.post("/login", loginUser);
+
+// Refresh route
+router.post("/refresh", refreshUser);
+
+// Logout route
+router.post("/logout", logoutUser);
 
 // Google Oauth route
 
