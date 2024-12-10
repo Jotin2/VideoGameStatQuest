@@ -17,11 +17,19 @@ const healthCheckRoutes = require("./routes/healthcheck");
 
 const app = express();
 
+// CORS Configuration
+const corsOptions = {
+    origin: "http://localhost:5173", // Frontend origin
+    credentials: true, // Allow credentials (cookies)
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 //app.use(passport.initialize()); GOOGLE OAUTH NOT SET UP YET
+
+// CORS Configuration
 
 // Environmental Variables
 const PORT = process.env.PORT || 3000;
@@ -30,6 +38,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 // Use Routes
 app.use("/auth", authRoutes);
 app.use("/api", healthCheckRoutes);
+app.use(cors(corsOptions));
 
 app.get("/protected", authMiddleware, (req, res) => {
     res.json({ message: "Access granted", userId: req.userId });
