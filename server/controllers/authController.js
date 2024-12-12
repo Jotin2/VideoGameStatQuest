@@ -48,11 +48,10 @@ async function loginUser(req, res) {
         // Generate Refresh Token
         const refreshToken = jwt.sign({ userId: user._id }, REFRESH_SECRET, { expiresIn: "7d" });
 
-        // Set the Refresh Token as an HttpOnly cookie
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: true, // Use true in production (HTTPS)
-            sameSite: "Strict", // Prevents CSRF
+            secure: true,
+            sameSite: "Strict",
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
@@ -65,7 +64,7 @@ async function loginUser(req, res) {
 
 // Refresh logic
 async function refreshUser(req, res) {
-    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+    const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
         return res.status(401).json({ error: "Refresh token missing" });
     }
@@ -73,7 +72,6 @@ async function refreshUser(req, res) {
     try {
         const decoded = jwt.verify(refreshToken, process.env.REFRESH_SECRET);
 
-        // Generate a new Access Token
         const newAccessToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_SECRET, {
             expiresIn: "15m",
         });

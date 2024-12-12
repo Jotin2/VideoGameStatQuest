@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { useNavigate, Link } from "react-router-dom";
+import "../../styles/LoginForm.css";
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState("");
@@ -22,41 +23,42 @@ const LoginForm: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        <form onSubmit={handleSubmit} className="login-form">
+            <h2>Login</h2>
+            {error && <p className="error-message">{error}</p>}
             <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    Email
-                </label>
+                <label htmlFor="email">Email</label>
                 <input
                     type="email"
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                    className="input"
                     required
                 />
             </div>
             <div className="mb-6">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                    Password
-                </label>
+                <label htmlFor="password">Password</label>
                 <input
                     type="password"
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                    className="input"
                     required
                 />
             </div>
-            <button
-                type="submit"
-                className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
-            >
+            <button type="submit" className="login-button">
                 Login
             </button>
+            <div className="mt-4 text-center">
+                <h3>
+                    New to Website?{" "}
+                    <Link to="/register" className="text-blue-500 hover:underline">
+                        Register
+                    </Link>
+                </h3>
+            </div>
         </form>
     );
 };
