@@ -1,0 +1,75 @@
+/* Login Form Container */
+.login-form {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow similar to Tailwind's */
+    border-radius: 0.5rem; /* Rounded corners */
+    padding: 1.5rem 2rem; /* Internal padding */
+    max-width: 24rem; /* Matches max-w-md in Tailwind */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+/* Form Heading */
+.login-form h2 {
+    color: #4b5563;
+    font-size: 1.875rem; /* Matches text-2xl in Tailwind */
+    font-weight: 700; /* Bold */
+    text-align: center;
+    margin-bottom: 1.5rem; /* Matches mb-6 in Tailwind */
+}
+
+.login-form h3 {
+    font-size: 1rem; /* Matches Tailwind's text-2xl */
+    font-weight: 700; /* Bold */
+    text-align: center;
+    margin-bottom: 1.5rem; /* Matches mb-6 in Tailwind */
+    color: #bebebe; /* Neutral gray */
+}
+
+/* Error Message */
+.login-form .error-message {
+    color: #ef4444; /* Matches text-red-500 in Tailwind */
+    text-align: center;
+    margin-bottom: 1rem; /* Matches mb-4 in Tailwind */
+}
+
+.login-form label {
+    color: #4b5563; /* Neutral gray */
+    font-size: 1rem; /* Matches text-sm in Tailwind */
+    font-weight: 500;
+    margin-bottom: 0.25rem; /* Spacing below the label */
+    display: block; /* Ensure it's a block element */
+}
+
+/* Input Fields */
+.input {
+    width: 100%; /* Full width */
+    padding: 0.5rem; /* Matches Tailwind's p-2 */
+    border: 1px solid #d1d5db; /* Matches Tailwind's border-gray-300 */
+    border-radius: 0.375rem; /* Rounded corners */
+    font-size: 1rem; /* Matches Tailwind's text-base */
+    margin-bottom: 1rem; /* Space below input */
+    color: #1f2937; /* Neutral dark gray text */
+    background-color: white; /* Ensure background is white */
+    transition: border-color 0.2s ease-in-out; /* Smooth focus effect */
+}
+
+.login-form .input:focus {
+    border-color: #3b82f6; /* Matches Tailwind's blue-500 */
+    outline: none; /* Remove default focus outline */
+    color: #000; /* Ensure text remains visible on focus */
+}
+
+/* Submit Button */
+.login-button {
+    width: 100%; /* Matches w-full in Tailwind */
+    background-color: #3b82f6; /* Matches bg-blue-500 in Tailwind */
+    color: white;
+    font-weight: 700; /* Bold */
+    padding: 0.5rem 1rem; /* Matches py-2 px-4 in Tailwind */
+    border-radius: 0.375rem; /* Matches rounded in Tailwind */
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: #2563eb; /* Matches bg-blue-600 in Tailwind */
+}
