@@ -11,6 +11,7 @@ const User = require("./models/User");
 const authMiddleware = require("./middleware/authMiddleware");
 const authRoutes = require("./routes/auth");
 const healthCheckRoutes = require("./routes/healthcheck");
+const igdbRoutes = require("./routes/igdbRoutes");
 
 // Import passport configuration
 //require("./config/passport"); GOOGLE OAUTH NOT SET UP YET
@@ -27,6 +28,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
+
 //app.use(passport.initialize()); GOOGLE OAUTH NOT SET UP YET
 
 // CORS Configuration
@@ -39,6 +41,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 app.use("/auth", authRoutes);
 app.use("/api", healthCheckRoutes);
 app.use(cors(corsOptions));
+app.use("/api/igdb", igdbRoutes);
 
 app.get("/protected", authMiddleware, (req, res) => {
     res.json({ message: "Access granted", userId: req.userId });
